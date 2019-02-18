@@ -1,0 +1,52 @@
+{
+  "name": "my-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"node bin/dev-server\" \"npm run json_server\"",
+    "json_server": "json-server --watch mock/mockdata.js --routes mock/routes.json --port 3003",
+    "build": "npm run clean && webpack --config webpack/webpack.prod.config.js",
+    "devbuild": "npm run clean && webpack --config webpack/webpack.dev.config.js",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "ouber23"
+  ],
+  "author": "ouber23",
+  "license": "ISC",
+  "dependencies": {
+    "antd": "^3.12.3",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.11.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "mockjs": "^1.0.1-beta3",
+    "react-hot-loader": "^4.6.3",
+    "redux-devtools": "^3.5.0",
+    "rimraf": "^2.6.3",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-merge": "^4.2.1"
+  }
+}
