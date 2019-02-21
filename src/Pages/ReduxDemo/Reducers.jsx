@@ -1,4 +1,12 @@
 import { createStore } from 'redux';
+import { combineReducers } from 'redux';
+import {
+    addTodo,
+    toggleTodo,
+    setVisibilityFilter,
+    VisibilityFilters
+  } from './actions';
+
 /**
  * 这是一个 reducer，形式为 (state, action) => state 的纯函数。
  * 描述了 action 如何把 state 转变成下一个 state。
@@ -11,6 +19,11 @@ import { createStore } from 'redux';
  * 根据不同的约定（如方法映射）来判断，只要适用你的项目即可。
  */
 
+const initialState = {
+  visibilityFilter: VisibilityFilters.SHOW_ALL,
+  todos: []
+};
+
 function counter(state = 0, action) {
     switch(action.type){
         case 'INCREAMENT':
@@ -22,7 +35,7 @@ function counter(state = 0, action) {
     }
 }
 
-function visibilityFilter( state = 'test', action ) {
+function visibilityFilter( state = 'SHOW_ACTIVE', action ) {
     switch(action.type){
         case 'SET_VISIBILITY_FILTER':
             return action.filter;
@@ -45,25 +58,18 @@ function todos(state = [], action) {
             return state;
     }
 }
-function todoApp(state = {}, action) {
-    return {
-      todos: todos(state.todos, action),
-      visibilityFilter: visibilityFilter(state.visibilityFilter, action)
-    };
-}
+
+
+
+
 // 创建 Redux store 来存放应用的状态。
 // API 是 { subscribe, dispatch, getState }。
-let store = createStore(counter);
 
+const todoAppOther = combineReducers({
+  visibilityFilter,
+  todos
+})
 // 可以手动订阅更新，也可以事件绑定到视图层。
-store.subscribe(() =>
-  console.log(store.getState())
-);
-// 改变内部 state 惟一方法是 dispatch 一个 action。
-// action 可以被序列化，用日记记录和储存下来，后期还可以以回放的方式执行
-store.dispatch({ type: 'INCREMENT' });
+
 // 1
-store.dispatch({ type: 'INCREMENT' });
-// 2
-store.dispatch({ type: 'DECREMENT' });
-// 1
+export default todoAppOther;

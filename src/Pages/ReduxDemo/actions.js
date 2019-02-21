@@ -16,18 +16,32 @@ export const VisibilityFilters = {
   SHOW_ACTIVE: 'SHOW_ACTIVE'
 }
 
+let nextTodoId = 0
+
+
+export const addTodo = text => {
+  return {
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    text
+  }
+}
+
+export const setVisibilityFilter = filter => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  }
+}
+
+export const toggleTodo = id => {
+  return {
+    type: 'TOGGLE_TODO',
+    id
+  }
+}
+
+
 /*
  * action 创建函数
  */
-
-export function addTodo(text) {
-  return { type: ADD_TODO, text }
-}
-
-export function toggleTodo(index) {
-  return { type: TOGGLE_TODO, index }
-}
-
-export function setVisibilityFilter(filter) {
-  return { type: SET_VISIBILITY_FILTER, filter }
-}
